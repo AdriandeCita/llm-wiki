@@ -1,0 +1,46 @@
+# Build tracking
+.build-hash
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux desktop
+.Trash-*
+.nfs*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+\#*\#
+.#*
+.devcontainer
+
+# ---------------------------------------------------------------------------
+# Wiki data — excluded by default to prevent accidental publishing.
+# If you want to back up your wiki in this repo, remove this section.
+# ---------------------------------------------------------------------------
+
+# Obsidian vault config
+.obsidian/
+
+# Wiki content and processed sources (keep directory stubs via .gitkeep)
+wiki/*
+!wiki/.gitkeep
+inbox/*
+!inbox/.gitkeep
+raw/*
+!raw/.gitkeep
+artifacts/*
+!artifacts/.gitkeep
