@@ -1,0 +1,7 @@
+- Obsidian plugin
+- Abstract actions into skills
+- structure files in the wiki
+- Add proper memory
+- Refine the instructions pattern for LLM in claude.md
+- Move `.claude` to local scope
+- License
