@@ -55,10 +55,10 @@ else
     echo "==> Docker image '$IMAGE_TAG' is up to date."
 fi
 
-# --- ensure ~/.claude and ~/.claude.json exist on host ----------------------
+# --- ensure .claude and .claude.json exist in the repo root -----------------
 
-mkdir -p "$HOME/.claude"
-touch "$HOME/.claude.json"
+mkdir -p "$REPO_ROOT/.claude"
+touch "$REPO_ROOT/.claude.json"
 
 # --- start or attach to container -------------------------------------------
 
@@ -117,8 +117,8 @@ else
     docker run -it --rm \
         --name "$CONTAINER_NAME" \
         -v "$REPO_ROOT:/wiki" \
-        -v "$HOME/.claude:/home/wiki/.claude" \
-        -v "$HOME/.claude.json:/home/wiki/.claude.json" \
+        -v "$REPO_ROOT/.claude:/home/wiki/.claude" \
+        -v "$REPO_ROOT/.claude.json:/home/wiki/.claude.json" \
         "$IMAGE_TAG" \
         bash -c "printf '%s\n\n' \"$WELCOME_MSG\"; exec claude"
 fi

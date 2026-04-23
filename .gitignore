@@ -44,3 +44,7 @@ raw/*
 !raw/.gitkeep
 artifacts/*
 !artifacts/.gitkeep
+
+# Claude Code local config (auth tokens, session history — not for VCS)
+.claude/
+.claude.json

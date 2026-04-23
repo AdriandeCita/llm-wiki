@@ -1,7 +1,4 @@
-- Obsidian plugin
 - Abstract actions into skills
-- structure files in the wiki
-- Add proper memory
-- Refine the instructions pattern for LLM in claude.md
-- Move `.claude` to local scope
-- License
+- Refine LLM instructions in CLAUDE.md (includes wiki page templates)
+- Obsidian plugin: container lifecycle + chat interface (replaces launcher.sh + terminal)
+- Add user/session metadata memory (scoped: preferences, topic frequency — not wiki content)

@@ -35,7 +35,7 @@ chmod +x launcher.sh
 
 The first launch builds the Docker image (takes a few minutes). Subsequent launches are fast.
 
-On first run, Claude Code will walk you through authentication. Your credentials are stored in `~/.claude` on your host and bind-mounted into the container, so you only authenticate once.
+On first run, Claude Code will walk you through authentication. Your credentials are stored in `.claude/` in the project root and bind-mounted into the container, so you only authenticate once per wiki clone.
 
 ---
 
