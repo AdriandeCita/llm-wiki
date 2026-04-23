@@ -7,35 +7,33 @@ This project is inspired by this [gist from Andrej Karpathy](https://gist.github
 - **Clear separation of contexts** — need a fresh topic, or want to keep work and personal knowledge apart? Clone the repo into a new directory and spin up as many independent wikis as you like.
 - **Isolation** — the agent runs inside Docker, adding a layer of security between it and the host machine when ingesting untrusted or unknown sources.
 - **Pluggable models** — Claude Code supports Ollama, so you can swap in your own locally-hosted LLMs.
-- **Obsidian integration** — Obsidian opens alongside the container so you can browse the wiki while the agent updates it (TBD Obsidian Plugin).
+- **Obsidian integration** — the bundled Obsidian plugin manages the Docker container and provides an embedded Claude terminal panel directly in the vault.
 
 ---
 
 ## Prerequisites
 
 - **Docker** — must be installed and running
-- **Obsidian** — optional; if installed, it opens automatically when you launch the wiki
+- **Obsidian** — required; the plugin is the entry point for the wiki
 - **An Anthropic account** — Claude Code will prompt you to authenticate on first run; no manual API key setup required
 
 ---
 
 ## Setup
 
+1. Clone this repo into your vault's plugin directory:
+
 ```bash
-# 1. Clone the repository
-git clone <repo-url> my-wiki
-cd my-wiki
-
-# 2. Make the launcher executable (only needed once)
-chmod +x launcher.sh
-
-# 3. Start the wiki
-./launcher.sh
+cd <your-vault>/.obsidian/plugins
+git clone <repo-url> llm-wiki
+cd llm-wiki && npm install && npm run build
 ```
 
-The first launch builds the Docker image (takes a few minutes). Subsequent launches are fast.
+2. In Obsidian, go to **Settings → Community plugins** and enable **LLM Wiki**.
 
-On first run, Claude Code will walk you through authentication. Your credentials are stored in `.claude/` in the project root and bind-mounted into the container, so you only authenticate once per wiki clone.
+The plugin will build the Docker image on first launch (takes a few minutes). Subsequent launches are fast.
+
+On first run, Claude Code will walk you through authentication. Your credentials are stored in `.claude/` inside the vault and bind-mounted into the container, so you only authenticate once per vault.
 
 ---
 
@@ -43,11 +41,11 @@ On first run, Claude Code will walk you through authentication. Your credentials
 
 ### Dropping in sources
 
-Copy any files you want the agent to process into `inbox/`. The agent reads but never modifies files in `inbox/`.
+Copy any files you want the agent to process into `inbox/` inside your vault. The agent reads but never modifies files in `inbox/`.
 
 ```bash
-cp ~/Downloads/research-paper.pdf inbox/
-cp ~/notes/meeting-notes.txt inbox/
+cp ~/Downloads/research-paper.pdf <your-vault>/inbox/
+cp ~/notes/meeting-notes.txt <your-vault>/inbox/
 ```
 
 ### Commands
@@ -70,18 +68,20 @@ When you run `/publish`, the agent saves the output to `artifacts/` with a dated
 
 ## Multiple wikis
 
-Clone the repository into a separate directory for each domain — each clone is a fully isolated wiki with its own Docker container.
+Use a separate Obsidian vault for each domain — each vault is a fully isolated wiki with its own Docker container.
 
 ---
 
 ## Structure
 
 ```
-inbox/        Drop source files here; agent reads them during /ingest
-raw/          Processed sources land here (moved from inbox/, never modified)
-wiki/         All wiki pages; index.md and log.md are maintained by the agent
-artifacts/    Generated outputs ready to share
-launcher.sh   Start here — builds the image and opens the container
-CLAUDE.md     Agent operating instructions (the schema the agent follows)
-Dockerfile    Container definition
+<vault>/
+  .obsidian/plugins/llm-wiki/  This plugin
+    container/                 Docker assets (Dockerfile, ws-terminal.js, CLAUDE.md template)
+  inbox/                       Drop source files here; agent reads them during /ingest
+  raw/                         Processed sources land here (moved from inbox/, never modified)
+  artifacts/                   Generated outputs ready to share
+  CLAUDE.md                    Agent operating instructions (seeded by plugin on first run)
+  index.md                     Wiki index (maintained by the agent)
+  log.md                       Operation log (maintained by the agent)
 ```

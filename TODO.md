@@ -1,4 +1,6 @@
-- Abstract actions into skills
-- Refine LLM instructions in CLAUDE.md (includes wiki page templates)
-- Obsidian plugin: container lifecycle + chat interface (replaces launcher.sh + terminal)
-- Add user/session metadata memory (scoped: preferences, topic frequency — not wiki content)
+- [x] **Bundle Docker assets in plugin** — move `Dockerfile` and `ws-terminal.js` from repo root into plugin directory; update `docker.ts` to reference plugin path; remove `launcher.sh`
+- [x] **Consolidate directories into vault** — move `inbox/`, `raw/`, `artifacts/`, `CLAUDE.md` inside `wiki/`; update volume mount in `docker.ts`; update CLAUDE.md path references; relocate `.claude/` auth state
+- [x] **Plugin rename** — rename plugin folder from `obsidian-sample-plugin` → `llm-wiki`; update `README.md`; verify `manifest.json` id
+- [ ] **Skills abstraction** — abstract `/ingest`, `/query`, `/publish`, `/lint`, `/status` into reusable Claude Code skills
+- [ ] **Wiki page templates** — refine `CLAUDE.md` with page templates and metadata conventions
+- [ ] **Session memory** — user/session metadata memory scoped to preferences and topic frequency (not wiki content)

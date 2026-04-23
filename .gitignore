@@ -1,6 +1,3 @@
-# Build tracking
-.build-hash
-
 # macOS
 .DS_Store
 .AppleDouble
@@ -26,24 +23,15 @@ $RECYCLE.BIN/
 \#*\#
 .#*
 .devcontainer
+*.iml
 
-# ---------------------------------------------------------------------------
-# Wiki data — excluded by default to prevent accidental publishing.
-# If you want to back up your wiki in this repo, remove this section.
-# ---------------------------------------------------------------------------
+# npm
+node_modules/
 
-# Obsidian vault config
-.obsidian/
-
-# Wiki content and processed sources (keep directory stubs via .gitkeep)
-wiki/*
-!wiki/.gitkeep
-inbox/*
-!inbox/.gitkeep
-raw/*
-!raw/.gitkeep
-artifacts/*
-!artifacts/.gitkeep
+# Build outputs
+main.js
+*.map
+container/.build-hash
 
 # Claude Code local config (auth tokens, session history — not for VCS)
 .claude/

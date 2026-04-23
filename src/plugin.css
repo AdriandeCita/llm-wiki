@@ -1,0 +1,18 @@
+/* Terminal panel container — absolutely positioned so its size comes from the
+   parent (the Obsidian leaf), not from xterm's internal scrollback height. */
+.llm-wiki-terminal {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+}
+
+/* xterm.js root element — must fill the container exactly. */
+.llm-wiki-terminal .xterm {
+	width: 100%;
+	height: 100%;
+}
+
+/* The viewport is already absolute-positioned by xterm.js; ensure it scrolls. */
+.llm-wiki-terminal .xterm-viewport {
+	overflow-y: scroll;
+}

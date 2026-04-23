@@ -1,0 +1,10 @@
+{
+	"id": "llm-wiki",
+	"name": "LLM Wiki",
+	"version": "1.0.0",
+	"minAppVersion": "1.4.0",
+	"description": "Manages the llm-wiki Docker container and provides an embedded Claude terminal panel.",
+	"author": "adriandecita",
+	"authorUrl": "https://github.com/adriandecita/llm-wiki",
+	"isDesktopOnly": true
+}
